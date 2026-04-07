@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Shippori+Mincho+B1:wght@400;600;700;800&family=Oswald:wght@400;500;600;700&family=Anton&display=swap');
+
+@import "tailwindcss";
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #000000;
+    color: #ffffff;
+    font-family: 'Shippori Mincho B1', serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  #root {
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  .font-oswald {
+    font-family: 'Oswald', sans-serif;
+  }
+
+  .font-anton {
+    font-family: 'Anton', sans-serif;
+  }
+
+  .font-psycho {
+    font-family: 'Rubik Glitch', cursive;
+  }
+
+  .font-mincho {
+    font-family: 'Shippori Mincho B1', serif;
+  }
+
+  .text-flame {
+    background: linear-gradient(135deg, #EF4444, #F97316, #F59E0B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-red {
+    text-shadow: 0 0 20px rgba(239, 68, 68, 0.8), 0 0 40px rgba(239, 68, 68, 0.5), 0 0 80px rgba(239, 68, 68, 0.3);
+  }
+
+  .glow-gold {
+    text-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.5);
+  }
+
+  .glow-white {
+    text-shadow: 0 0 20px rgba(255,255,255,0.6), 0 0 40px rgba(255,255,255,0.3);
+  }
+
+  .card-hover {
+    transition: all 0.35s ease;
+  }
+
+  .card-hover:hover {
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.7), 0 0 60px rgba(239, 68, 68, 0.4), 0 0 100px rgba(239, 68, 68, 0.2);
+    border-color: #EF4444 !important;
+    transform: translateY(-6px);
+  }
+}
+
+/* Flame text animation */
+@keyframes flame-text {
+  0%, 100% {
+    background-position: 0% 50%;
+    filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.9)) drop-shadow(0 0 20px rgba(239, 68, 68, 0.5));
+  }
+  33% {
+    background-position: 50% 50%;
+    filter: drop-shadow(0 0 15px rgba(249, 115, 22, 1)) drop-shadow(0 0 30px rgba(249, 115, 22, 0.6));
+  }
+  66% {
+    background-position: 100% 50%;
+    filter: drop-shadow(0 0 20px rgba(245, 158, 11, 1)) drop-shadow(0 0 40px rgba(245, 158, 11, 0.7));
+  }
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; transform: skewX(0deg); }
+  15% { opacity: 0.92; transform: skewX(-0.8deg); }
+  30% { opacity: 1; transform: skewX(0.6deg); }
+  45% { opacity: 0.95; transform: skewX(-0.4deg); }
+  60% { opacity: 1; transform: skewX(0.8deg); }
+  75% { opacity: 0.93; transform: skewX(-0.6deg); }
+  90% { opacity: 1; transform: skewX(0.4deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.5), 0 0 40px rgba(239, 68, 68, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(239, 68, 68, 0.9), 0 0 80px rgba(239, 68, 68, 0.6), 0 0 120px rgba(239, 68, 68, 0.3);
+  }
+}
+
+@keyframes ember-float {
+  0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-100vh) translateX(var(--drift)) rotate(720deg); opacity: 0; }
+}
+
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-flame-text {
+  background: linear-gradient(90deg, #EF4444, #F97316, #F59E0B, #F97316, #EF4444);
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: flame-text 4s ease-in-out infinite;
+}
+
+.animate-flicker {
+  animation: flicker 4s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+.animate-gradient-x {
+  background-size: 200% auto;
+  animation: gradient-x 4s ease infinite;
+}
+
+/* ===== Intro Animation: Psychedelic Layers ===== */
+
+@keyframes psycho-spin {
+  from { transform: rotate(0deg) scale(2.2); }
+  to   { transform: rotate(360deg) scale(2.2); }
+}
+
+@keyframes psycho-spin-rev {
+  from { transform: rotate(0deg) scale(2.5); }
+  to   { transform: rotate(-360deg) scale(2.5); }
+}
+
+@keyframes psycho-pulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.2); }
+}
+
+@keyframes psycho-drift {
+  0%   { background-position: 0% 0%; }
+  33%  { background-position: 100% 30%; }
+  66%  { background-position: 50% 100%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* Layer 1: 回転コニックグラデーション（ベース）*/
+.psycho-layer-1 {
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    #1a0030, #7c3aed, #0d1500, #4ade80,
+    #1a0005, #dc2626, #0a0a1a, #9333ea,
+    #1a0030
+  );
+  animation: psycho-spin 4s linear infinite;
+}
+
+/* Layer 2: 逆回転コニック */
+.psycho-layer-2 {
+  background: conic-gradient(
+    from 90deg at 45% 55%,
+    #000, #db2777, #000, #22c55e,
+    #000, #8b5cf6, #000, #db2777
+  );
+  animation: psycho-spin-rev 3.2s linear infinite;
+}
+
+/* Layer 3: 中心から広がる放射状グロー */
+.psycho-layer-3 {
+  background: radial-gradient(
+    ellipse 75% 75% at 50% 50%,
+    rgba(147, 51, 234, 0.65) 0%,
+    rgba(220, 38, 38, 0.35) 35%,
+    rgba(34, 197, 94, 0.15) 60%,
+    transparent 75%
+  );
+  animation: psycho-pulse 1.8s ease-in-out infinite;
+}
+
+/* Layer 4: 浮遊するカラースポット */
+.psycho-layer-4 {
+  background:
+    radial-gradient(circle 40% at 15% 85%, rgba(219,39,119,0.55), transparent 60%),
+    radial-gradient(circle 35% at 85% 15%, rgba(74,222,128,0.50), transparent 60%),
+    radial-gradient(circle 45% at 60% 60%, rgba(139,92,246,0.55), transparent 60%);
+  background-size: 250% 250%;
+  animation: psycho-drift 2.5s ease-in-out infinite;
+}
+
+/* 背景全体のゆらぎ */
+@keyframes bg-waver {
+  0%, 100% { transform: scale(1) skew(0deg, 0deg);      filter: brightness(1)    hue-rotate(0deg); }
+  20%       { transform: scale(1.008) skew(0.2deg, 0.1deg);  filter: brightness(0.92) hue-rotate(6deg); }
+  40%       { transform: scale(0.993) skew(-0.15deg, -0.05deg); filter: brightness(1.04) hue-rotate(-4deg); }
+  60%       { transform: scale(1.005) skew(0.1deg, -0.1deg);  filter: brightness(0.96) hue-rotate(9deg); }
+  80%       { transform: scale(0.997) skew(-0.2deg, 0.1deg);  filter: brightness(1.02) hue-rotate(-6deg); }
+}
+
+.psycho-bg-waver {
+  position: absolute;
+  inset: 0;
+  animation: bg-waver 3s ease-in-out infinite;
+}
+
+/* テキストのゆらぎ */
+@keyframes text-waver {
+  0%, 100% { transform: translate(0, 0)      skewX(0deg); }
+  12%       { transform: translate(-1.5px, 0.5px) skewX(-1deg); }
+  28%       { transform: translate(1px, -1px)    skewX(0.7deg); }
+  44%       { transform: translate(-0.5px, 1px)  skewX(-0.5deg); }
+  60%       { transform: translate(1.5px, -0.5px) skewX(0.8deg); }
+  76%       { transform: translate(-1px, 1px)    skewX(-0.6deg); }
+  92%       { transform: translate(0.5px, -0.5px) skewX(0.4deg); }
+}
+
+.text-waver {
+  animation: text-waver 1.8s ease-in-out infinite;
+  animation-delay: 1.9s; /* テキスト出現後から開始 */
+}
+
+/* スキャンライン */
+.psycho-scanlines {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 3px,
+    rgba(0, 0, 0, 0.045) 3px,
+    rgba(0, 0, 0, 0.045) 4px
+  );
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #EF4444, #F59E0B);
+  border-radius: 2px;
+}
+
+/* Selection */
+::selection {
+  background: rgba(239, 68, 68, 0.4);
+  color: #fff;
+}
